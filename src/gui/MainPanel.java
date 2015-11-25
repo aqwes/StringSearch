@@ -1,54 +1,101 @@
 package gui;
 
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
-public class MainPanel extends JPanel {
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.border.Border;
+
+import Program1.MatchKMP;
+import main.ReadFile;
+
+public class MainPanel implements ActionListener {
 	private JPanel mainPnl;
-	private JTextField txtInput1;
-	private JTextField txtInput2;
+	private JTextArea txtInput1;
+	private JTextArea txtInput2;
 	private JButton generate;
 	private char[] mainC;
 	private char[] searchC;
-	
-	public MainPanel() {
-		initializeGui();
+	private JFrame frame;
+	private ReadFile file;
+	private char[] f;
+	private MatchKMP kmp;
+
+	public MainPanel(ReadFile file) {
+		this.file = file;
+		frame = new JFrame();
+		frame.setBounds(0, 0, 601, 482);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("");
+		InitializeGUI(); // Fill in components
+		frame.setVisible(true);
+		frame.setResizable(false); // Prevent user from change size
+		frame.setLocationRelativeTo(null); // Start middle screen
+		txtInput1.setLineWrap(true);
+		txtInput1.setEditable(false);
+		try {
+			f = file.readFile();
+			for (int i = 0; i < f.length; i++) {
+
+				txtInput1.append("" + f[i]);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
-	private void initializeGui() {
-		setPreferredSize(new Dimension(400, 205));
+
+	private void InitializeGUI() {
 		mainPnl = new JPanel();
-		mainPnl.setPreferredSize(new Dimension(400, 200));
 		Border border = BorderFactory.createTitledBorder("Ange main sträng");
 		Border border2 = BorderFactory.createTitledBorder("Ange söksträng");
 		
 		
-		txtInput1 = new JTextField();
-		txtInput2 = new JTextField();
+		txtInput1 = new JTextArea();
+		txtInput2 = new JTextArea();
 		txtInput1.setBorder(border);
 		txtInput2.setBorder(border2);
 		
+
 		generate = new JButton("Generate");
-		generate.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == generate) {
-					mainC = txtInput1.getText().toCharArray();
-					searchC = txtInput2.getText().toCharArray();
-				}
-			}
-		});
 		
 		mainPnl.setLayout(new GridLayout(3,3));
 		mainPnl.add(txtInput1);
 		mainPnl.add(txtInput2);
 		mainPnl.add(generate);
 		
-		add(mainPnl);
+		frame.add(mainPnl);
+		generate.addActionListener(this);
+
+	}
+
+	public void start() throws IOException {
+
+		kmp = new MatchKMP();
+		kmp.naiveStringMatching(file.readFile(), getTxtInput2().toCharArray());
+		kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
+		kmp.printTime();
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == generate) {
+			try {
+				start();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+
+		}
 	}
 	
 	public char[] getMainC() {
@@ -57,13 +104,16 @@ public class MainPanel extends JPanel {
 	
 	public char[] getSearchC() {
 		return searchC;
-	}
 	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("Sök efter strängar :)");
-		frame.add(new MainPanel());
-		frame.setVisible(true);
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
+
+	public String getTxtInput2() {
+		return txtInput2.getText();
+	}
+
+	public void setTxtInput2(JTextArea txtInput2) {
+		this.txtInput2 = txtInput2;
+	}
+
 }

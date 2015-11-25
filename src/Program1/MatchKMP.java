@@ -12,11 +12,14 @@ public class MatchKMP {
 				if (textString[i + j] != patternString[j])
 					break;
 			}
-			if (j == M)
+			if (j == M){
 				System.out.println("Match found at index " + i);
-			// System.nanoTime();
-		}
+		
+			}
+	
 		nano1 = System.nanoTime();
+		
+	}
 	}
 
 	public int[] computePartialMatchTable(char[] patternString) {
@@ -40,6 +43,7 @@ public class MatchKMP {
 				currentIndex = currentIndex + 1;
 			} else {
 				// for mismatch case
+
 				if (length != 0) {
 					length = partial_match[length - 1];
 				} else {

@@ -8,9 +8,10 @@ import java.util.ArrayList;
 
 public class ReadFile {
 	private char[] a;
+	private String source = "src/resources/2.txt";
 
-	public char[] readFile(String fnam) throws IOException {
-		InputStreamReader r = new InputStreamReader(new FileInputStream(fnam));
+	public char[] readFile() throws IOException {
+		InputStreamReader r = new InputStreamReader(new FileInputStream(source));
         ArrayList<char[]> blocks = new ArrayList<char[]>();
         int bytes = 0;
         char[] buf = new char[8192];
@@ -39,19 +40,8 @@ public class ReadFile {
         for (int j = 0; j < i; j++) {
             a[k++] = buf[j];
         }
-		a(a);
+
         return a;
 
 	}
-
-	public char[] getA() {
-		System.out.println("hhj");
-		return a;
-	}
-
-	public void a(char[] a) {
-		this.a = a;
-	}
-
-
 }
