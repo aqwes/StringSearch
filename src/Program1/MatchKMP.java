@@ -96,9 +96,10 @@ public class MatchKMP {
 	}
 
 	public void printTime() {
-
 		long sum = (nano2 - nano1);
 		double seconds = (double) sum / 1000000000;
-		System.out.println("Seconds " + seconds);
+		System.out.println("NaiveStringMatching:  " + nano1);
+		System.out.println("PrintPatternIndexKMP: " + nano2);
+		System.out.println("Difference in seconds " + seconds);
 	}
 }
