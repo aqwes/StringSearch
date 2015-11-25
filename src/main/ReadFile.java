@@ -7,7 +7,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class ReadFile {
-	public static char[] readFile(String fnam) throws IOException {
+	private char[] a;
+
+	public char[] readFile(String fnam) throws IOException {
 		InputStreamReader r = new InputStreamReader(new FileInputStream(fnam));
         ArrayList<char[]> blocks = new ArrayList<char[]>();
         int bytes = 0;
@@ -27,7 +29,7 @@ public class ReadFile {
                 i = 0;
             }
         }
-        char[] a = new char[bytes]; // breaks if file is 2^31 chars or more
+		a = new char[bytes]; // breaks if file is 2^31 chars or more
         int k = 0;
         for (char[] b : blocks) {
             for (int j = 0; j < b.length; j++) {
@@ -37,19 +39,19 @@ public class ReadFile {
         for (int j = 0; j < i; j++) {
             a[k++] = buf[j];
         }
-		System.out.println(a);
+		a(a);
         return a;
-    }
 
-	// Test.
-	public static void main(String[] args) throws IOException {
-		char[] f = readFile(args[0]);
-		for (int i = 0; i < f.length; i++) {
-			if (i == 40) {
-				System.out.println("… and then " + (f.length - i) + " more characters");
-				break;
-			}
-			System.out.println(i + ": " + f[i] + " (" + (int) f[i] + ")");
-		}
 	}
+
+	public char[] getA() {
+		System.out.println("hhj");
+		return a;
+	}
+
+	public void a(char[] a) {
+		this.a = a;
+	}
+
+
 }
