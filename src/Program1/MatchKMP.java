@@ -1,7 +1,8 @@
 package Program1;
 
 public class MatchKMP {
-
+	private long nano1;
+	private long nano2;
 	public void naiveStringMatching(char[] textString, char[] patternString) {
 		int N = textString.length;
 		int M = patternString.length;
@@ -13,7 +14,9 @@ public class MatchKMP {
 			}
 			if (j == M)
 				System.out.println("Match found at index " + i);
+			// System.nanoTime();
 		}
+		nano1 = System.nanoTime();
 	}
 
 	public int[] computePartialMatchTable(char[] patternString) {
@@ -43,6 +46,7 @@ public class MatchKMP {
 					partial_match[currentIndex] = 0;
 					currentIndex = currentIndex + 1;
 				}
+
 			}
 
 		}
@@ -88,5 +92,13 @@ public class MatchKMP {
 				}
 			}
 		}
+		nano2 = System.nanoTime();
+	}
+
+	public void printTime() {
+
+		long sum = (nano2 - nano1);
+		double seconds = (double) sum / 1000000000;
+		System.out.println("Seconds " + seconds);
 	}
 }

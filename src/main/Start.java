@@ -10,7 +10,9 @@ public class Start {
 	Start service = new Start();
 	MatchKMP kmp = new MatchKMP();
 	ReadFile file = new ReadFile();
+		kmp.naiveStringMatching(file.readFile("src/resources/hej.txt"), "e".toCharArray());
 		kmp.printPatternIndexKMP(file.readFile("src/resources/hej.txt"), "e".toCharArray());
+		kmp.printTime();
 
     }
 }
