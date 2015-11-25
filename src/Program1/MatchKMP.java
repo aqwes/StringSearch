@@ -1,4 +1,4 @@
-package main;
+package Program1;
 
 public class MatchKMP {
 
