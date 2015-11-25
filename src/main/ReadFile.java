@@ -1,12 +1,14 @@
 package main;
 // Sample code to read a complete text file into a char array.
 
-import java.io.*;
-import java.util.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class ReadFile {
-    public static char[] readFile(String fnam) throws IOException {
-        InputStreamReader r = new InputStreamReader(new FileInputStream(fnam));
+	public static char[] readFile(String fnam) throws IOException {
+		InputStreamReader r = new InputStreamReader(new FileInputStream(fnam));
         ArrayList<char[]> blocks = new ArrayList<char[]>();
         int bytes = 0;
         char[] buf = new char[8192];
@@ -35,18 +37,19 @@ public class ReadFile {
         for (int j = 0; j < i; j++) {
             a[k++] = buf[j];
         }
+		System.out.println(a);
         return a;
     }
 
-    // Test.
-    public static void main(String[] args) throws IOException {
-        char[] f = readFile(args[0]);
-        for (int i = 0; i < f.length; i++) {
-            if (i == 40) {
-                System.out.println("… and then "+(f.length-i)+" more characters");
-                break;
-            }
-            System.out.println(i+": "+f[i]+" ("+(int) f[i]+")");
-        }
-    }
+	// Test.
+	public static void main(String[] args) throws IOException {
+		char[] f = readFile(args[0]);
+		for (int i = 0; i < f.length; i++) {
+			if (i == 40) {
+				System.out.println("… and then " + (f.length - i) + " more characters");
+				break;
+			}
+			System.out.println(i + ": " + f[i] + " (" + (int) f[i] + ")");
+		}
+	}
 }
