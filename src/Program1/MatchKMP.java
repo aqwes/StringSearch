@@ -1,5 +1,7 @@
 package Program1;
 
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
+
 public class MatchKMP {
 	private long nano1;
 	private long nano2;
@@ -100,12 +102,13 @@ public class MatchKMP {
 	}
 
 	public void printTime() {
-		long sum = (nano2 - nano1);
-		double seconds = (double) sum / 1000000000;
+		double n2 = NANOSECONDS.toMillis(nano2);
+		double n1 = NANOSECONDS.toMillis(nano1);
 
+		double sum = n2 - n1;
 
-		System.out.println("NaiveStringMatching:  " + nano1);
-		System.out.println("PrintPatternIndexKMP: " + nano2);
-		System.out.println("Difference in seconds " + seconds);
+		System.out.println("NaiveStringMatching:  " + n1);
+		System.out.println("PrintPatternIndexKMP: " + n2);
+		System.out.println("Difference in miliseconds " + sum);
 	}
 }

@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 public class ReadFile {
 	private char[] a;
-	private String source = "src/resources/2.txt";
+	private String source = "src/resources/1.txt";
 
 	public char[] readFile() throws IOException {
 		InputStreamReader r = new InputStreamReader(new FileInputStream(source));
         ArrayList<char[]> blocks = new ArrayList<char[]>();
         int bytes = 0;
-        char[] buf = new char[8192];
+		char[] buf = new char[8192];
         int i = 0;
         while (true) {
             int bytesRead = r.read(buf, i, buf.length-i);
