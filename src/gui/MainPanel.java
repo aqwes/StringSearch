@@ -15,21 +15,29 @@ import javax.swing.border.Border;
 import Program1.MatchKMP;
 import main.ReadFile;
 
+/**
+ * Gui for the StringSearch project
+ * @author Daniel Hertzman-Ericson
+ *
+ */
 public class MainPanel implements ActionListener {
 	private JTextArea txtInput1;
 	private JTextArea txtInput2;
 	private JButton generate;
 	private final JFrame frame;
 	private final ReadFile file;
-	private String hej;
 
+	/**
+	 * Constructor that reads a file
+	 * @param file
+	 */
 	public MainPanel(ReadFile file) {
 		this.file = file;
 		frame = new JFrame();
 		frame.setBounds(0, 0, 601, 482);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("");
-		InitializeGUI(); // Fill in components
+		initializeGUI(); // Fill in components
 		frame.setVisible(true);
 		frame.setResizable(false); // Prevent user from change size
 		frame.setLocationRelativeTo(null); // Start middle screen
@@ -48,7 +56,10 @@ public class MainPanel implements ActionListener {
 		}
 	}
 
-	private void InitializeGUI() {
+	/**
+	 * Initializes the GUI-components
+	 */
+	private void initializeGUI() {
 		JPanel mainPnl = new JPanel();
 		Border border = BorderFactory.createTitledBorder("Ange main sträng");
 		Border border2 = BorderFactory.createTitledBorder("Ange söksträng");
@@ -72,6 +83,10 @@ public class MainPanel implements ActionListener {
 
 	}
 
+	/**
+	 * Initially 
+	 * @throws IOException
+	 */
 	private void start() throws IOException {
 
 		MatchKMP kmp = new MatchKMP();
