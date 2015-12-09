@@ -5,6 +5,16 @@ import static java.util.concurrent.TimeUnit.NANOSECONDS;
 public class MatchKMP {
 	private long nano1;
 	private long nano2;
+	/**
+	 * Method that gets two paramters. Has two variables N and M.
+	 * The for loop goes through the N variable minus the M variable.
+	 * Then another for loop goes through the patternString.
+	 * If not textString is equal to patternString there is no match.
+	 * If they are equal it prints out "match found".
+	 * Then the method returns the running time in nano seconds. 
+	 * @param textString
+	 * @param patternString
+	 */
 	public void naiveStringMatching(char[] textString, char[] patternString) {
 		int N = textString.length;
 		int M = patternString.length;
@@ -22,8 +32,16 @@ public class MatchKMP {
 		nano1 = System.nanoTime();
 		
 	}
-	}
-
+}
+	/**
+	 * Method that gets a char array as a parameter.
+	 * While the currentIndex is less than the searched pattern and
+	 * if patternString currentIndex is equal to patternStrings length there is a match.
+	 * Else if length is not equal to 0 the partialMatch length is minus 1.
+	 * Else the currentIndex is equal to 0 and currentIndex increase by 1.
+	 * @param patternString
+	 * @return an array of int.
+	 */
 	private int[] computePartialMatchTable(char[] patternString) {
 		// TODO Auto-generated method stub
 		int patternLength = patternString.length;
