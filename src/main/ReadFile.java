@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ReadFile {
 
     public char[] readFile() throws IOException {
-        String source = "src/resources/1.txt";
+        String source = "src/resources/3.txt";
         InputStreamReader r = new InputStreamReader(new FileInputStream(source));
         ArrayList<char[]> blocks = new ArrayList<>();
         int bytes = 0;

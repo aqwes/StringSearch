@@ -28,9 +28,9 @@ public class MatchKMP {
 				System.out.println("Match found at index " + i);
 		
 			}
-	
-		nano1 = System.nanoTime();
-		
+			nano1 = System.nanoTime();
+
+
 	}
 }
 	/**
@@ -42,7 +42,7 @@ public class MatchKMP {
 	 * @param patternString
 	 * @return an array of int.
 	 */
-	private int[] computePartialMatchTable(char[] patternString) {
+	private int[] kmp (char[] patternString) {
 		// TODO Auto-generated method stub
 		int patternLength = patternString.length;
 		int partial_match[] = new int[patternLength];
@@ -83,7 +83,7 @@ public class MatchKMP {
 		int textLength = textString.length;
 		int patternLength = patternString.length;
 
-		int partial_match[] = computePartialMatchTable(patternString);
+		int partial_match[] = kmp(patternString);
 
 		int currentIndexText = 0;
 		int currentIndexPattern = 0;
@@ -123,10 +123,19 @@ public class MatchKMP {
 		double n2 = NANOSECONDS.toMillis(nano2);
 		double n1 = NANOSECONDS.toMillis(nano1);
 
+		if(n2>n1){
+			System.out.println("\n"+"NaiveStringMatching won");
+		}
+		if(n1>n2){
+			System.out.println("\n"+"PrintPatternIndexKMP won");
+		}
+
 		double sum = n2 - n1;
 
 		System.out.println("NaiveStringMatching:  " + n1);
 		System.out.println("PrintPatternIndexKMP: " + n2);
 		System.out.println("Difference in miliseconds " + sum);
+
+
 	}
 }
