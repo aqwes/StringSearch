@@ -24,7 +24,7 @@ public class MatchKMP {
 	}
 	}
 
-	public int[] computePartialMatchTable(char[] patternString) {
+	private int[] computePartialMatchTable(char[] patternString) {
 		// TODO Auto-generated method stub
 		int patternLength = patternString.length;
 		int partial_match[] = new int[patternLength];

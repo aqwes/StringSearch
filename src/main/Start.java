@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import gui.MainPanel;
 
-public class Start {
+class Start {
 
 
 

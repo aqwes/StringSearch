@@ -16,16 +16,11 @@ import Program1.MatchKMP;
 import main.ReadFile;
 
 public class MainPanel implements ActionListener {
-	private JPanel mainPnl;
 	private JTextArea txtInput1;
 	private JTextArea txtInput2;
 	private JButton generate;
-	private char[] mainC;
-	private char[] searchC;
-	private JFrame frame;
-	private ReadFile file;
-	private char[] f;
-	private MatchKMP kmp;
+	private final JFrame frame;
+	private final ReadFile file;
 
 	public MainPanel(ReadFile file) {
 		this.file = file;
@@ -40,10 +35,10 @@ public class MainPanel implements ActionListener {
 		txtInput1.setLineWrap(true);
 		txtInput1.setEditable(false);
 		try {
-			f = file.readFile();
-			for (int i = 0; i < f.length; i++) {
+			char[] f = file.readFile();
+			for (char aF : f) {
 
-				txtInput1.append("" + f[i]);
+				txtInput1.append("" + aF);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -52,7 +47,7 @@ public class MainPanel implements ActionListener {
 	}
 
 	private void InitializeGUI() {
-		mainPnl = new JPanel();
+		JPanel mainPnl = new JPanel();
 		Border border = BorderFactory.createTitledBorder("Ange main sträng");
 		Border border2 = BorderFactory.createTitledBorder("Ange söksträng");
 		
@@ -75,9 +70,9 @@ public class MainPanel implements ActionListener {
 
 	}
 
-	public void start() throws IOException {
+	private void start() throws IOException {
 
-		kmp = new MatchKMP();
+		MatchKMP kmp = new MatchKMP();
 		kmp.naiveStringMatching(file.readFile(), getTxtInput2().toCharArray());
 		kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
 		kmp.printTime();
@@ -97,23 +92,9 @@ public class MainPanel implements ActionListener {
 
 		}
 	}
-	
-	public char[] getMainC() {
-		return mainC;
-	}
-	
-	public char[] getSearchC() {
-		return searchC;
-	
 
-	}
-
-	public String getTxtInput2() {
+	private String getTxtInput2() {
 		return txtInput2.getText();
-	}
-
-	public void setTxtInput2(JTextArea txtInput2) {
-		this.txtInput2 = txtInput2;
 	}
 
 }

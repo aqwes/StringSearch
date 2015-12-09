@@ -7,12 +7,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class ReadFile {
-	private char[] a;
-	private String source = "src/resources/1.txt";
 
-	public char[] readFile() throws IOException {
-		InputStreamReader r = new InputStreamReader(new FileInputStream(source));
-        ArrayList<char[]> blocks = new ArrayList<char[]>();
+    public char[] readFile() throws IOException {
+        String source = "src/resources/1.txt";
+        InputStreamReader r = new InputStreamReader(new FileInputStream(source));
+        ArrayList<char[]> blocks = new ArrayList<>();
         int bytes = 0;
 		char[] buf = new char[8192];
         int i = 0;
@@ -30,11 +29,11 @@ public class ReadFile {
                 i = 0;
             }
         }
-		a = new char[bytes]; // breaks if file is 2^31 chars or more
+        char[] a = new char[bytes];
         int k = 0;
         for (char[] b : blocks) {
-            for (int j = 0; j < b.length; j++) {
-                a[k++] = b[j];
+            for (char aB : b) {
+                a[k++] = aB;
             }
         }
         for (int j = 0; j < i; j++) {
