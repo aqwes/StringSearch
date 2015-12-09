@@ -21,6 +21,7 @@ public class MainPanel implements ActionListener {
 	private JButton generate;
 	private final JFrame frame;
 	private final ReadFile file;
+	private String hej;
 
 	public MainPanel(ReadFile file) {
 		this.file = file;
@@ -35,6 +36,7 @@ public class MainPanel implements ActionListener {
 		txtInput1.setLineWrap(true);
 		txtInput1.setEditable(false);
 		try {
+
 			char[] f = file.readFile();
 			for (char aF : f) {
 
