@@ -84,7 +84,7 @@ public class MainPanel implements ActionListener {
 	}
 
 	/**
-	 * Initially 
+	 * Calls the algorithm for both naive search and KMP
 	 * @throws IOException
 	 */
 	private void start() throws IOException {
