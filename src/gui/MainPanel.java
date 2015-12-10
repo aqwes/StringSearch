@@ -1,19 +1,14 @@
 package gui;
 
-import java.awt.GridLayout;
+import Program1.MatchKMP;
+import main.ReadFile;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.border.Border;
-
-import Program1.MatchKMP;
-import main.ReadFile;
 
 /**
  * Gui for the StringSearch project
@@ -21,11 +16,11 @@ import main.ReadFile;
  *
  */
 public class MainPanel implements ActionListener {
+	private final JFrame frame;
+	private final ReadFile file;
 	private JTextArea txtInput1;
 	private JTextArea txtInput2;
 	private JButton generate;
-	private final JFrame frame;
-	private final ReadFile file;
 
 	/**
 	 * Constructor that reads a file
@@ -88,15 +83,10 @@ public class MainPanel implements ActionListener {
 	 * @throws IOException
 	 */
 	private void start() throws IOException {
-		int i = 0;
+
 		MatchKMP kmp = new MatchKMP();
-		if (i == 0) {
-			kmp.naiveStringMatching(file.readFile(), getTxtInput2().toCharArray());
-			i++;
-		}
-		if (i == 1) {
-			kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
-		}
+		kmp.naiveStringMatching(file.readFile(), getTxtInput2().toCharArray());
+		kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
 		kmp.printTime();
 	}
 
