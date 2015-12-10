@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
+
 /**
  * Gui for the StringSearch project
  * @author Daniel Hertzman-Ericson
@@ -21,6 +23,11 @@ public class MainPanel implements ActionListener {
 	private JTextArea txtInput1;
 	private JTextArea txtInput2;
 	private JButton generate;
+	private long nano1;
+	private long nano2;
+	private long nano1a;
+	private long nano2a;
+	private double sum;
 
 	/**
 	 * Constructor that reads a file
@@ -85,11 +92,18 @@ public class MainPanel implements ActionListener {
 	private void start() throws IOException {
 
 		MatchKMP kmp = new MatchKMP();
+		nano1 = System.nanoTime();
 
 		kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
+		nano1a = System.nanoTime() - nano1;
+
+		nano2 = System.nanoTime();
+
 			kmp.naiveStringMatching(file.readFile(), getTxtInput2().toCharArray());
 			kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
-		kmp.printTime();
+		nano2a = System.nanoTime() - nano2;
+
+		printTime();
 
 	}
 
@@ -109,6 +123,24 @@ public class MainPanel implements ActionListener {
 
 	private String getTxtInput2() {
 		return txtInput2.getText();
+	}
+
+	public void printTime() {
+		double n2 = NANOSECONDS.toMillis(nano2a);
+		double n1 = NANOSECONDS.toMillis(nano1a);
+
+		if (n2 > n1) {
+			System.out.println("\n" + "NaiveStringMatching won");
+		}
+		if (n1 > n2) {
+			System.out.println("\n" + "PrintPatternIndexKMP won");
+		}
+
+		System.out.println("NaiveStringMatching:  " + n1);
+		System.out.println("PrintPatternIndexKMP: " + n2);
+		System.out.println("Difference in miliseconds " + sum);
+
+
 	}
 
 }

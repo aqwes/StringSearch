@@ -1,13 +1,7 @@
 package Program1;
 
-import static java.util.concurrent.TimeUnit.NANOSECONDS;
-
 public class MatchKMP {
-	private long nano1;
-	private long nano2;
-	private long nano1a;
-	private long nano2a;
-	private	double sum;
+
 	/**
 	 * Method that gets two paramters. Has two variables N and M.
 	 * The for loop goes through the N variable minus the M variable.
@@ -19,7 +13,7 @@ public class MatchKMP {
 	 * @param patternString
 	 */
 	public void naiveStringMatching(char[] textString, char[] patternString) {
-		nano1 = System.nanoTime();
+
 		int N = textString.length;
 		int M = patternString.length;
 		for (int i = 0; i < N - M + 1; i++) {
@@ -34,7 +28,6 @@ public class MatchKMP {
 			}
 
 	}
-		nano1a = System.nanoTime()-nano1;
 }
 	/**
 	 * Method that gets a char array as a parameter.
@@ -47,7 +40,7 @@ public class MatchKMP {
 	 */
 	private int[] kmp (char[] patternString) {
 		// TODO Auto-generated method stub
-		nano2 = System.nanoTime();
+
 		int patternLength = patternString.length;
 		int partial_match[] = new int[patternLength];
 
@@ -78,7 +71,7 @@ public class MatchKMP {
 			}
 
 		}
-		nano2a = System.nanoTime() - nano2;
+
 		return partial_match;
 	}
 
@@ -123,21 +116,5 @@ public class MatchKMP {
 
 	}
 
-	public void printTime() {
-		double n2 = NANOSECONDS.toMillis(nano2a);
-		double n1 = NANOSECONDS.toMillis(nano1a);
 
-		if(n2>n1){
-			System.out.println("\n"+"NaiveStringMatching won");
-		}
-		if(n1>n2){
-			System.out.println("\n"+"PrintPatternIndexKMP won");
-		}
-
-		System.out.println("NaiveStringMatching:  " + n1);
-		System.out.println("PrintPatternIndexKMP: " + n2);
-		System.out.println("Difference in miliseconds " + sum);
-
-
-	}
 }
