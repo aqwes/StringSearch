@@ -16,8 +16,8 @@ import java.io.IOException;
  *
  */
 public class MainPanel implements ActionListener {
-	private final JFrame frame;
-	private final ReadFile file;
+	private JFrame frame;
+	private ReadFile file;
 	private JTextArea txtInput1;
 	private JTextArea txtInput2;
 	private JButton generate;
@@ -89,6 +89,7 @@ public class MainPanel implements ActionListener {
 		kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
 			kmp.naiveStringMatching(file.readFile(), getTxtInput2().toCharArray());
 			kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
+		kmp.printTime();
 
 	}
 
