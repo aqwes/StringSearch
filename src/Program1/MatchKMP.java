@@ -78,7 +78,7 @@ public class MatchKMP {
 			}
 
 		}
-		nano2a = System.nanoTime();
+		nano2a = System.nanoTime() - nano2;
 		return partial_match;
 	}
 
