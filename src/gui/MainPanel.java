@@ -91,6 +91,7 @@ public class MainPanel implements ActionListener {
 		int i = 0;
 		MatchKMP kmp = new MatchKMP();
 		if (i == 0) {
+			kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
 			kmp.naiveStringMatching(file.readFile(), getTxtInput2().toCharArray());
 			i++;
 		}
