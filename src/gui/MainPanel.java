@@ -98,7 +98,6 @@ public class MainPanel implements ActionListener {
 
 		nano2 = System.nanoTime();
 			kmp.naiveStringMatching(file.readFile(), getTxtInput2().toCharArray());
-
 		nano2a = System.nanoTime() - (nano2);
 
 		printTime();
@@ -128,11 +127,12 @@ public class MainPanel implements ActionListener {
 		double n1 = NANOSECONDS.toMillis(nano1a);
 
 		if (n2 > n1) {
-			System.out.println("\n" + "PrintPatternIndexKMP won");
+			System.out.println("\n" + "NaiveStringMatching won");
+
 			sum = (n2 - n1);
 		}
 		if (n1 > n2) {
-			System.out.println("\n" + "NaiveStringMatching won");
+			System.out.println("\n" + "PrintPatternIndexKMP won");
 			sum = (n1 - n2);
 		}
 
