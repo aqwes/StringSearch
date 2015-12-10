@@ -1,11 +1,10 @@
 package main;
 
-import java.io.IOException;
-
 import gui.MainPanel;
 
-class Start {
+import java.io.IOException;
 
+class Start {
 
 
     public static void main(String[] args) throws IOException {

@@ -1,6 +1,6 @@
 package gui;
 
-import Program1.MatchKMP;
+import Program1.Algorithm;
 import main.ReadFile;
 
 import javax.swing.*;
@@ -14,17 +14,15 @@ import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
 /**
  * Gui for the StringSearch project
- * @author Daniel Hertzman-Ericson
+ * @author Daniel Hertzman-Ericson, Dennis Kristensson, Henrik Klein
  *
  */
 public class MainPanel implements ActionListener {
-	private JFrame frame;
-	private ReadFile file;
+	private final JFrame frame;
+	private final ReadFile file;
 	private JTextArea txtInput1;
 	private JTextArea txtInput2;
 	private JButton generate;
-	private long nano1;
-	private long nano2;
 	private long nano1a;
 	private long nano2a;
 	private double sum;
@@ -53,7 +51,6 @@ public class MainPanel implements ActionListener {
 				txtInput1.append("" + aF);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -71,7 +68,6 @@ public class MainPanel implements ActionListener {
 		txtInput2 = new JTextArea();
 		txtInput1.setBorder(border);
 		txtInput2.setBorder(border2);
-		
 
 		generate = new JButton("Generate");
 		
@@ -84,20 +80,28 @@ public class MainPanel implements ActionListener {
 		generate.addActionListener(this);
 
 	}
-
 	/**
 	 * Calls the algorithm for both naive search and KMP
 	 * @throws IOException
 	 */
-	private void start() throws IOException {
+	private void start() {
 
-		MatchKMP kmp = new MatchKMP();
-		nano1 = System.nanoTime();
-		kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
+		Algorithm kmp = new Algorithm();
+		long nano1 = System.nanoTime();
+		try {
+			kmp.indexPatternKMP(file.readFile(), getTxtInput2().toCharArray());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		nano1a = System.nanoTime() - (nano1);
 
-		nano2 = System.nanoTime();
-			kmp.naiveStringMatching(file.readFile(), getTxtInput2().toCharArray());
+
+		long nano2 = System.nanoTime();
+		try {
+			kmp.naiveMatching(file.readFile(), getTxtInput2().toCharArray());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		nano2a = System.nanoTime() - (nano2);
 
 		printTime();
@@ -107,22 +111,14 @@ public class MainPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == generate) {
-			try {
 				start();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-
 		}
 	}
-
 	private String getTxtInput2() {
 		return txtInput2.getText();
 	}
 
-	public void printTime() {
+	private void printTime() {
 		double n2 = NANOSECONDS.toMillis(nano2a);
 		double n1 = NANOSECONDS.toMillis(nano1a);
 
