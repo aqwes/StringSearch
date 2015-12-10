@@ -88,18 +88,16 @@ public class MainPanel implements ActionListener {
 	 * @throws IOException
 	 */
 	private void start() throws IOException {
-int i =0;
+		int i = 0;
 		MatchKMP kmp = new MatchKMP();
-		if(i==0) {
-
-			      	      			kmp.naiveStringMatching(file.readFile(), getTxtInput2().toCharArray());
-
+		if (i == 0) {
+			kmp.naiveStringMatching(file.readFile(), getTxtInput2().toCharArray());
 			i++;
 		}
-		if(i==1) {
-			              	kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
+		if (i == 1) {
+			kmp.printPatternIndexKMP(file.readFile(), getTxtInput2().toCharArray());
 		}
-			kmp.printTime();
+		kmp.printTime();
 	}
 
 	@Override
