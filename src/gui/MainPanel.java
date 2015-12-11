@@ -1,7 +1,7 @@
 package gui;
 
-import Program1.Algorithm;
 import main.ReadFile;
+import program.Algorithm;
 
 import javax.swing.*;
 import javax.swing.border.Border;
