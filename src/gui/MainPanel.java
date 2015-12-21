@@ -122,18 +122,18 @@ public class MainPanel implements ActionListener {
 		double n2 = NANOSECONDS.toMillis(nano2a);
 		double n1 = NANOSECONDS.toMillis(nano1a);
 
-		if (n2 > n1) {
+		if (n1 > n2) {
 			System.out.println("\n" + "NaiveStringMatching won");
 
-			sum = (n2 - n1);
-		}
-		if (n1 > n2) {
-			System.out.println("\n" + "PrintPatternIndexKMP won");
 			sum = (n1 - n2);
 		}
+		if (n2 > n1) {
+			System.out.println("\n" + "PrintPatternIndexKMP won");
+			sum = (n2 - n1);
+		}
 
-		System.out.println("NaiveStringMatching:  " + n1);
-		System.out.println("PrintPatternIndexKMP: " + n2);
+		System.out.println("NaiveStringMatching:  " + n2);
+		System.out.println("PrintPatternIndexKMP: " + n1);
 		System.out.println("Difference in miliseconds " + sum);
 
 
