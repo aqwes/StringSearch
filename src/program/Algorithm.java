@@ -1,4 +1,4 @@
-package Program1;
+package program;
 
 public class Algorithm {
 	/**
@@ -21,12 +21,12 @@ public class Algorithm {
 				if (string[i + j] != patternString[j])
 					break;
 			}
-			if (j == M){
+			if (j == M) {
 				System.out.println("Match found at index " + i);
-		
 			}
+		}
 	}
-}
+	
 	/**
 	 * Method that gets a char array as a parameter.
 	 * While the currentIndex is less than the searched pattern and
@@ -36,7 +36,7 @@ public class Algorithm {
 	 * @param patternString
 	 * @return an array of int.
 	 */
-	private int[] kmp (char[] patternString) {
+	private int[] kmp(char[] patternString) {
 		int patternL = patternString.length;
 		int partial_match[] = new int[patternL];
 
@@ -88,18 +88,20 @@ public class Algorithm {
 			}
 
 			if (currentIndexPattern == patternL) {
+				
 				System.out.println("Match found at index " + (currentIndexText - patternL));
 				currentIndexPattern = partial_match[currentIndexPattern - 1];
-			} else if (currentIndexText < textLength
-
-					&& string[currentIndexText] != patternString[currentIndexPattern]) {
+				
+			} else if (currentIndexText < textLength && string[currentIndexText] != patternString[currentIndexPattern]) {
 
 				if (currentIndexPattern != 0) {
-
+					
 					currentIndexPattern = partial_match[currentIndexPattern - 1];
+					
 				} else {
-
+					
 					currentIndexText = currentIndexText + 1;
+					
 				}
 			}
 		}
