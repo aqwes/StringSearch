@@ -1,6 +1,10 @@
 /bin/
+.classpath
 .project
+*.iml
 .settings
 .DS_Store
 .idea
-*.iml
+out/
+/.gitignore
+*.xml
